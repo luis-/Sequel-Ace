@@ -1,15 +1,16 @@
-/* Copyright (c) 2000, 2020, Oracle and/or its affiliates.
+/* Copyright (c) 2000, 2024, Oracle and/or its affiliates.
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License, version 2.0,
    as published by the Free Software Foundation.
 
-   This program is also distributed with certain software (including
+   This program is designed to work with certain software (including
    but not limited to OpenSSL) that is licensed under separate terms,
    as designated in a particular file or component or in included license
    documentation.  The authors of MySQL hereby grant you an additional
    permission to link the program and your derivative works with the
-   separately licensed software that they have included with MySQL.
+   separately licensed software that they have either included with
+   the program or referenced in the documentation.
 
    Without limiting anything contained in the foregoing, this file,
    which is part of C Driver for MySQL (Connector/C), is also subject to the
@@ -47,7 +48,7 @@
 */
 #ifndef my_socket_defined
 #include "my_io.h"
-#include "mysql/components/services/my_io_bits.h"
+#include "mysql/components/services/bits/my_io_bits.h"
 #endif
 
 #ifndef MYSQL_ABI_CHECK
@@ -73,6 +74,17 @@
 #define SERVER_VERSION_LENGTH 60
 #define SQLSTATE_LENGTH 5
 
+/*
+  In FIDO terminology, relying party is the server where required services are
+  running. Relying party ID is unique name given to server.
+*/
+#define RELYING_PARTY_ID_LENGTH 255
+
+/* Length of random salt sent during fido registration */
+#define CHALLENGE_LENGTH 32
+
+/* Maximum authentication factors server supports */
+#define MAX_AUTH_FACTORS 3
 /**
   Maximum length of comments
 
@@ -115,7 +127,7 @@
 */
 #define SCRAMBLE_LENGTH 20
 #define AUTH_PLUGIN_DATA_PART_1_LENGTH 8
-/** length of password stored in the db: new passwords are preceeded with '*'*/
+/** length of password stored in the db: new passwords are preceded with '*'*/
 #define SCRAMBLED_PASSWORD_CHAR_LENGTH (SCRAMBLE_LENGTH * 2 + 1)
 
 /**
@@ -178,12 +190,12 @@
 #define EXPLICIT_NULL_FLAG                        \
   (1 << 27) /**< Field is explicitly specified as \
                NULL by the user */
-#define FIELD_IS_MARKED                   \
-  (1 << 28) /**< Intern: field is marked, \
-                 general purpose */
+/* 1 << 28 is unused. */
 
 /** Field will not be loaded in secondary engine. */
 #define NOT_SECONDARY_FLAG (1 << 29)
+/** Field is explicitly marked as invisible by the user. */
+#define FIELD_IS_INVISIBLE (1 << 30)
 
 /** @}*/
 
@@ -220,7 +232,7 @@
 #define REFRESH_MASTER                                                 \
   128                            /**< Remove all bin logs in the index \
                                     and truncate the index, RESET MASTER */
-#define REFRESH_ERROR_LOG 256    /**< Rotate only the erorr log */
+#define REFRESH_ERROR_LOG 256    /**< Rotate only the error log */
 #define REFRESH_ENGINE_LOG 512   /**< Flush all storage engine logs */
 #define REFRESH_BINARY_LOG 1024  /**< Flush the binary log */
 #define REFRESH_RELAY_LOG 2048   /**< Flush the relay log */
@@ -233,7 +245,9 @@
   @sa REFRESH_READ_LOCK, handle_reload_request, close_cached_tables
 */
 #define REFRESH_FAST 32768
-#define REFRESH_USER_RESOURCES 0x80000L   /** FLISH RESOUCES. @sa ::reset_mqh */
+#define REFRESH_USER_RESOURCES                                                 \
+  0x80000L                                /** FLUSH RESOURCES. @sa ::reset_mqh \
+                                           */
 #define REFRESH_FOR_EXPORT 0x100000L      /** FLUSH TABLES ... FOR EXPORT */
 #define REFRESH_OPTIMIZER_COSTS 0x200000L /** FLUSH OPTIMIZER_COSTS */
 #define REFRESH_PERSIST 0x400000L         /** RESET PERSIST */
@@ -311,7 +325,8 @@
   @sa send_client_reply_packet()
 */
 #define CLIENT_CONNECT_WITH_DB 8
-#define CLIENT_NO_SCHEMA 16 /**< Don't allow database.table.column */
+#define CLIENT_NO_SCHEMA \
+  16 /**< DEPRECATED: Don't allow database.table.column */
 /**
   Compression protocol supported.
 
@@ -676,15 +691,6 @@
 #define CLIENT_DEPRECATE_EOF (1UL << 24)
 
 /**
-  Verify server certificate.
-
-  Client only flag.
-
-  @deprecated in favor of --ssl-mode.
-*/
-#define CLIENT_SSL_VERIFY_SERVER_CERT (1UL << 30)
-
-/**
   The client can handle optional metadata information in the resultset.
 */
 #define CLIENT_OPTIONAL_RESULTSET_METADATA (1UL << 25)
@@ -709,10 +715,53 @@
 #define CLIENT_ZSTD_COMPRESSION_ALGORITHM (1UL << 26)
 
 /**
+  Support optional extension for query parameters into the @ref
+  page_protocol_com_query and @ref page_protocol_com_stmt_execute packets.
+
+  Server
+  ------
+
+  Expects an optional part containing the query parameter set(s). Executes the
+  query for each set of parameters or returns an error if more than 1 set of
+  parameters is sent and the server can't execute it.
+
+  Client
+  ------
+
+  Can send the optional part containing the query parameter set(s).
+*/
+#define CLIENT_QUERY_ATTRIBUTES (1UL << 27)
+
+/**
+  Support Multi factor authentication.
+
+  Server
+  ------
+  Server sends AuthNextFactor packet after every nth factor authentication
+  method succeeds, except the last factor authentication.
+
+  Client
+  ------
+  Client reads AuthNextFactor packet sent by server and initiates next factor
+  authentication method.
+*/
+#define MULTI_FACTOR_AUTHENTICATION (1UL << 28)
+
+/**
   This flag will be reserved to extend the 32bit capabilities structure to
   64bits.
 */
 #define CLIENT_CAPABILITY_EXTENSION (1UL << 29)
+
+/**
+  Verify server certificate.
+
+  Client only flag.
+
+  @deprecated in favor of --ssl-mode.
+*/
+#define CLIENT_SSL_VERIFY_SERVER_CERT (1UL << 30)
+
 /**
   Don't reset the options after an unsuccessful connect
 
@@ -728,7 +777,7 @@
 /** a compatibility alias for CLIENT_COMPRESS */
 #define CAN_CLIENT_COMPRESS CLIENT_COMPRESS
 
-/** Gather all possible capabilites (flags) supported by the server */
+/** Gather all possible capabilities (flags) supported by the server */
 #define CLIENT_ALL_FLAGS                                                       \
   (CLIENT_LONG_PASSWORD | CLIENT_FOUND_ROWS | CLIENT_LONG_FLAG |               \
    CLIENT_CONNECT_WITH_DB | CLIENT_NO_SCHEMA | CLIENT_COMPRESS | CLIENT_ODBC | \
@@ -741,7 +790,8 @@
    CLIENT_PLUGIN_AUTH_LENENC_CLIENT_DATA |                                     \
    CLIENT_CAN_HANDLE_EXPIRED_PASSWORDS | CLIENT_SESSION_TRACK |                \
    CLIENT_DEPRECATE_EOF | CLIENT_OPTIONAL_RESULTSET_METADATA |                 \
-   CLIENT_ZSTD_COMPRESSION_ALGORITHM)
+   CLIENT_ZSTD_COMPRESSION_ALGORITHM | CLIENT_QUERY_ATTRIBUTES |               \
+   MULTI_FACTOR_AUTHENTICATION)
 
 /**
   Switch off from ::CLIENT_ALL_FLAGS the flags that are optional and
@@ -854,6 +904,12 @@ struct Vio;
 #define MAX_CHAR_WIDTH 255
 /// Default width for blob in bytes @todo - align this with sizes from field.h
 #define MAX_BLOB_WIDTH 16777216
+
+#define NET_ERROR_UNSET 0               /**< No error has occurred yet */
+#define NET_ERROR_SOCKET_RECOVERABLE 1  /**< Socket still usable */
+#define NET_ERROR_SOCKET_UNUSABLE 2     /**< Do not use the socket */
+#define NET_ERROR_SOCKET_NOT_READABLE 3 /**< Try write and close socket */
+#define NET_ERROR_SOCKET_NOT_WRITABLE 4 /**< Try read and close socket */
 
 typedef struct NET {
   MYSQL_VIO vio;
@@ -972,11 +1028,29 @@ enum enum_resultset_metadata {
   RESULTSET_METADATA_FULL = 1
 };
 
+#if defined(__clang__)
+// disable -Wdocumentation to workaround
+// https://bugs.llvm.org/show_bug.cgi?id=38905
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdocumentation"
+#endif
+/**
+  The flags used in COM_STMT_EXECUTE.
+  @sa @ref Protocol_classic::parse_packet, @ref mysql_int_serialize_param_data
+*/
+#if defined(__clang__)
+#pragma clang diagnostic pop
+#endif
 enum enum_cursor_type {
   CURSOR_TYPE_NO_CURSOR = 0,
   CURSOR_TYPE_READ_ONLY = 1,
   CURSOR_TYPE_FOR_UPDATE = 2,
-  CURSOR_TYPE_SCROLLABLE = 4
+  CURSOR_TYPE_SCROLLABLE = 4,
+  /**
+    On when the client will send the parameter count
+    even for 0 parameters.
+  */
+  PARAMETER_COUNT_AVAILABLE = 8
 };
 
 /** options for ::mysql_options() */

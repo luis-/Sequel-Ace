@@ -14,10 +14,6 @@
 		1A96314725B9CE6600BF2E91 /* SPMySQLArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A96314525B9CE6600BF2E91 /* SPMySQLArrayAdditions.m */; };
 		1A96314E25B9CE9900BF2E91 /* SPMySQLMutableDictionaryAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A96314C25B9CE9900BF2E91 /* SPMySQLMutableDictionaryAdditions.m */; };
 		1A96314F25B9CE9900BF2E91 /* SPMySQLMutableDictionaryAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A96314D25B9CE9900BF2E91 /* SPMySQLMutableDictionaryAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		269BA7EB249FDC97005E4896 /* libcrypto.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 269BA7EA249FDC97005E4896 /* libcrypto.1.1.dylib */; };
-		269BA7ED249FDCB1005E4896 /* libssl.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 269BA7EC249FDCB1005E4896 /* libssl.1.1.dylib */; };
-		26F0BF1124A0052B00A43B20 /* libcrypto.1.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 269BA7EA249FDC97005E4896 /* libcrypto.1.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		26F0BF1224A0053100A43B20 /* libssl.1.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 269BA7EC249FDCB1005E4896 /* libssl.1.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		507FF1E51BC0D82300104523 /* DataConversion_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 507FF1811BC0C64100104523 /* DataConversion_Tests.m */; };
 		507FF23B1BC0E8CA00104523 /* SPMySQL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* SPMySQL.framework */; };
 		507FF23D1BC157B500104523 /* SPMySQLStringAdditions_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 507FF23C1BC157B500104523 /* SPMySQLStringAdditions_Tests.m */; };
@@ -97,6 +93,10 @@
 		58D2A4D116EDF1C6002EB401 /* SPMySQLEmptyResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 58D2A4CF16EDF1C6002EB401 /* SPMySQLEmptyResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		58D2A4D216EDF1C6002EB401 /* SPMySQLEmptyResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D2A4D016EDF1C6002EB401 /* SPMySQLEmptyResult.m */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
+		FD344B962D4CB32900D5AA24 /* libssl.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FD344B952D4CB32900D5AA24 /* libssl.3.dylib */; };
+		FD344B972D4CB32900D5AA24 /* libcrypto.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FD344B942D4CB32900D5AA24 /* libcrypto.3.dylib */; };
+		FD344B9E2D4CCDD200D5AA24 /* libcrypto.3.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = FD344B942D4CB32900D5AA24 /* libcrypto.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		FD344B9F2D4CCDD400D5AA24 /* libssl.3.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = FD344B952D4CB32900D5AA24 /* libssl.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		FD4211952918779400941BFE /* SPMySQLGeometryDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4211942918779400941BFE /* SPMySQLGeometryDataTests.m */; };
 /* End PBXBuildFile section */
 
@@ -111,14 +111,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		26F0BF1024A0052100A43B20 /* CopyFiles */ = {
+		FD344B9D2D4CCDC000D5AA24 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
-				26F0BF1224A0053100A43B20 /* libssl.1.1.dylib in CopyFiles */,
-				26F0BF1124A0052B00A43B20 /* libcrypto.1.1.dylib in CopyFiles */,
+				FD344B9E2D4CCDD200D5AA24 /* libcrypto.3.dylib in CopyFiles */,
+				FD344B9F2D4CCDD400D5AA24 /* libssl.3.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,8 +136,6 @@
 		1A96314525B9CE6600BF2E91 /* SPMySQLArrayAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPMySQLArrayAdditions.m; path = Source/SPMySQLArrayAdditions.m; sourceTree = "<group>"; };
 		1A96314C25B9CE9900BF2E91 /* SPMySQLMutableDictionaryAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPMySQLMutableDictionaryAdditions.m; path = Source/SPMySQLMutableDictionaryAdditions.m; sourceTree = "<group>"; };
 		1A96314D25B9CE9900BF2E91 /* SPMySQLMutableDictionaryAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPMySQLMutableDictionaryAdditions.h; path = Source/SPMySQLMutableDictionaryAdditions.h; sourceTree = "<group>"; };
-		269BA7EA249FDC97005E4896 /* libcrypto.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libcrypto.1.1.dylib; sourceTree = "<group>"; };
-		269BA7EC249FDCB1005E4896 /* libssl.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libssl.1.1.dylib; sourceTree = "<group>"; };
 		32DBCF5E0370ADEE00C91783 /* SPMySQLFramework_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPMySQLFramework_Prefix.pch; path = Source/SPMySQLFramework_Prefix.pch; sourceTree = "<group>"; };
 		507FF1811BC0C64100104523 /* DataConversion_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataConversion_Tests.m; sourceTree = "<group>"; };
 		507FF1D51BC0D7D300104523 /* SPMySQL Unit Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SPMySQL Unit Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -222,6 +220,8 @@
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* SPMySQL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SPMySQL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		FD344B942D4CB32900D5AA24 /* libcrypto.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libcrypto.3.dylib; sourceTree = "<group>"; };
+		FD344B952D4CB32900D5AA24 /* libssl.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libssl.3.dylib; sourceTree = "<group>"; };
 		FD4211942918779400941BFE /* SPMySQLGeometryDataTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPMySQLGeometryDataTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -240,10 +240,10 @@
 			files = (
 				8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */,
 				584292A714C34B36000F8438 /* libmysqlclient.a in Frameworks */,
-				269BA7EB249FDC97005E4896 /* libcrypto.1.1.dylib in Frameworks */,
-				269BA7ED249FDCB1005E4896 /* libssl.1.1.dylib in Frameworks */,
 				5884133C14CCEC6B0078027F /* libz.dylib in Frameworks */,
 				58C00ADA14E4959A00AC489A /* SystemConfiguration.framework in Frameworks */,
+				FD344B962D4CB32900D5AA24 /* libssl.3.dylib in Frameworks */,
+				FD344B972D4CB32900D5AA24 /* libcrypto.3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,8 +422,8 @@
 		5842929C14C34B36000F8438 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				269BA7EC249FDCB1005E4896 /* libssl.1.1.dylib */,
-				269BA7EA249FDC97005E4896 /* libcrypto.1.1.dylib */,
+				FD344B942D4CB32900D5AA24 /* libcrypto.3.dylib */,
+				FD344B952D4CB32900D5AA24 /* libssl.3.dylib */,
 				5842929D14C34B36000F8438 /* libmysqlclient.a */,
 			);
 			path = lib;
@@ -592,7 +592,7 @@
 				8DC2EF520486A6940098B216 /* Resources */,
 				8DC2EF540486A6940098B216 /* Sources */,
 				8DC2EF560486A6940098B216 /* Frameworks */,
-				26F0BF1024A0052100A43B20 /* CopyFiles */,
+				FD344B9D2D4CCDC000D5AA24 /* CopyFiles */,
 				26F0BF1324A0053E00A43B20 /* ShellScript */,
 				26F0BF1424A0069300A43B20 /* ShellScript */,
 			);
@@ -693,7 +693,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/usr/bin/env bash\n\n# always need to do this\n# Make it so the SPMySQL executable can find the dylibs it was compiled with\necho \"running install_name_tool\"\npwd\ncd \"$CONFIGURATION_BUILD_DIR/$WRAPPER_NAME/Versions/Current\" || exit 1;\npwd\notool -L SPMySQL\nCRYPTO=$(otool -L SPMySQL | grep libcrypto.1.1.dylib | cut -d' ' -f1 | head -1)\nCRYPTO=\"${CRYPTO#\"${CRYPTO%%[![:space:]]*}\"}\"  # remove leading whitespace characters\nCRYPTO=\"${CRYPTO%\"${CRYPTO##*[![:space:]]}\"}\"   # remove trailing whitespace characters\n\necho \"CRYPTO: $CRYPTO\"\necho \"Setting @loader_path/libcrypto.1.1.dylib in SPMySQL\"\ninstall_name_tool -change \"$CRYPTO\" @loader_path/libcrypto.1.1.dylib SPMySQL\n\nSSL=$(otool -L SPMySQL | grep libssl.1.1.dylib | cut -d' ' -f1 | head -1)\nSSL=\"${SSL#\"${SSL%%[![:space:]]*}\"}\"  \nSSL=\"${SSL%\"${SSL##*[![:space:]]}\"}\"  \necho \"SSL: $SSL\"\necho \"Setting @loader_path/libssl.1.1.dylib in SPMySQL\"\ninstall_name_tool -change \"$SSL\" @loader_path/libssl.1.1.dylib SPMySQL\notool -L SPMySQL\n\necho \"checking for new dylibs\"\ncd \"$SRCROOT\" || exit 1;\npwd\n\nNEW_LIBS=$(git diff --name-only --diff-filter=ACM -- *.dylib)\n\nif  [ -z \"$NEW_LIBS\" ]; then\n    echo \"no new dylibs, stopping\"\n    exit 0;\nfi\n\ncd \"$CONFIGURATION_BUILD_DIR/$WRAPPER_NAME/Versions/A\" || exit 1;\necho \"Setting libcrypto.1.1.dylib in libcrypto.1.1.dylib\"\ninstall_name_tool -id \"libcrypto.1.1.dylib\" libcrypto.1.1.dylib\n\nSSL=$(otool -L libssl.1.1.dylib | grep libssl.1.1.dylib | cut -d' ' -f1 | head -1)\nSSL=\"${SSL#\"${SSL%%[![:space:]]*}\"}\"  \nSSL=\"${SSL%\"${SSL##*[![:space:]]}\"}\"   \necho \"SSL: $SSL\"\necho \"Setting libssl.1.1.dylib in libssl.1.1.dylib\"\ninstall_name_tool -id \"libssl.1.1.dylib\" libssl.1.1.dylib\n\nCRYPTO=$(otool -L libssl.1.1.dylib | grep libcrypto.1.1.dylib | cut -d' ' -f1 | head -1)\nCRYPTO=\"${CRYPTO#\"${CRYPTO%%[![:space:]]*}\"}\"  \nCRYPTO=\"${CRYPTO%\"${CRYPTO##*[![:space:]]}\"}\"   \necho \"CRYPTO: $CRYPTO\"\necho \"Setting @loader_path/libcrypto.1.1.dylib in libssl.1.1.dylib\"\ninstall_name_tool -change \"$CRYPTO\" @loader_path/libcrypto.1.1.dylib libssl.1.1.dylib\notool -L lib*\n\n# no need for exit, if there are no new libs, we've already exited.\ncd \"$CONFIGURATION_BUILD_DIR/$WRAPPER_NAME/Versions/Current\" || exit 1;\n\necho \"Codesigning libcrypto.1.1.dylib and libssl.1.1.dylib\"\n/usr/bin/codesign --force --sign \"Apple Development\" -o runtime --timestamp=none --preserve-metadata=identifier,entitlements,flags \"libcrypto.1.1.dylib\"\n/usr/bin/codesign --force --sign \"Apple Development\" -o runtime --timestamp=none --preserve-metadata=identifier,entitlements,flags \"libssl.1.1.dylib\"\n\necho \"Copying libcrypto.1.1.dylib and libssl.1.1.dylib to $SRCROOT/MySQL Client Libraries/lib\"\ncp libcrypto.1.1.dylib \"$SRCROOT/MySQL Client Libraries/lib\" || exit 1;\ncp libssl.1.1.dylib \"$SRCROOT/MySQL Client Libraries/lib\" || exit 1;\n";
+			shellScript = "#!/usr/bin/env bash\n\n# always need to do this\n# Make it so the SPMySQL executable can find the dylibs it was compiled with\necho \"running install_name_tool\"\npwd\ncd \"$CONFIGURATION_BUILD_DIR/$WRAPPER_NAME/Versions/Current\" || exit 1;\npwd\notool -L SPMySQL\nCRYPTO=$(otool -L SPMySQL | grep libcrypto.3.dylib | cut -d' ' -f1 | head -1)\nCRYPTO=\"${CRYPTO#\"${CRYPTO%%[![:space:]]*}\"}\"  # remove leading whitespace characters\nCRYPTO=\"${CRYPTO%\"${CRYPTO##*[![:space:]]}\"}\"   # remove trailing whitespace characters\n\necho \"CRYPTO: $CRYPTO\"\necho \"Setting @loader_path/libcrypto.3.dylib in SPMySQL\"\ninstall_name_tool -change \"$CRYPTO\" @loader_path/libcrypto.3.dylib SPMySQL\n\nSSL=$(otool -L SPMySQL | grep libssl.3.dylib | cut -d' ' -f1 | head -1)\nSSL=\"${SSL#\"${SSL%%[![:space:]]*}\"}\"  \nSSL=\"${SSL%\"${SSL##*[![:space:]]}\"}\"  \necho \"SSL: $SSL\"\necho \"Setting @loader_path/libssl.3.dylib in SPMySQL\"\ninstall_name_tool -change \"$SSL\" @loader_path/libssl.3.dylib SPMySQL\notool -L SPMySQL\n\necho \"checking for new dylibs\"\ncd \"$SRCROOT\" || exit 1;\npwd\n\nNEW_LIBS=$(git diff --name-only --diff-filter=ACM -- *.dylib)\n\nif  [ -z \"$NEW_LIBS\" ]; then\n    echo \"no new dylibs, stopping\"\n    exit 0;\nfi\n\ncd \"$CONFIGURATION_BUILD_DIR/$WRAPPER_NAME/Versions/A\" || exit 1;\necho \"Setting libcrypto.3.dylib in libcrypto.3.dylib\"\ninstall_name_tool -id \"libcrypto.3.dylib\" libcrypto.3.dylib\n\nSSL=$(otool -L libssl.3.dylib | grep libssl.3.dylib | cut -d' ' -f1 | head -1)\nSSL=\"${SSL#\"${SSL%%[![:space:]]*}\"}\"  \nSSL=\"${SSL%\"${SSL##*[![:space:]]}\"}\"   \necho \"SSL: $SSL\"\necho \"Setting libssl.3.dylib in libssl.3.dylib\"\ninstall_name_tool -id \"libssl.3.dylib\" libssl.3.dylib\n\nCRYPTO=$(otool -L libssl.3.dylib | grep libcrypto.3.dylib | cut -d' ' -f1 | head -1)\nCRYPTO=\"${CRYPTO#\"${CRYPTO%%[![:space:]]*}\"}\"  \nCRYPTO=\"${CRYPTO%\"${CRYPTO##*[![:space:]]}\"}\"   \necho \"CRYPTO: $CRYPTO\"\necho \"Setting @loader_path/libcrypto.3.dylib in libssl.3.dylib\"\ninstall_name_tool -change \"$CRYPTO\" @loader_path/libcrypto.3.dylib libssl.3.dylib\notool -L lib*\n\n# no need for exit, if there are no new libs, we've already exited.\ncd \"$CONFIGURATION_BUILD_DIR/$WRAPPER_NAME/Versions/Current\" || exit 1;\n\necho \"Codesigning libcrypto.3.dylib and libssl.3.dylib\"\n/usr/bin/codesign --force --sign \"Apple Development\" -o runtime --timestamp=none --preserve-metadata=identifier,entitlements,flags \"libcrypto.3.dylib\"\n/usr/bin/codesign --force --sign \"Apple Development\" -o runtime --timestamp=none --preserve-metadata=identifier,entitlements,flags \"libssl.3.dylib\"\n\necho \"Copying libcrypto.3.dylib and libssl.3.dylib to $SRCROOT/MySQL Client Libraries/lib\"\ncp libcrypto.3.dylib \"$SRCROOT/MySQL Client Libraries/lib\" || exit 1;\ncp libssl.3.dylib \"$SRCROOT/MySQL Client Libraries/lib\" || exit 1;\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -780,7 +780,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sequel-ace.spmysql";
 				PRODUCT_NAME = SPMySQL;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				REEXPORTED_LIBRARY_NAMES = "crypto.1.1 ssl.1.1";
+				REEXPORTED_LIBRARY_NAMES = "crypto.3 ssl.3";
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;
 			};
@@ -813,7 +813,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sequel-ace.spmysql";
 				PRODUCT_NAME = SPMySQL;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				REEXPORTED_LIBRARY_NAMES = "crypto.1.1 ssl.1.1";
+				REEXPORTED_LIBRARY_NAMES = "crypto.3 ssl.3";
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;
 			};
@@ -1093,7 +1093,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sequel-ace.spmysql";
 				PRODUCT_NAME = SPMySQL;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				REEXPORTED_LIBRARY_NAMES = "crypto.1.1 ssl.1.1";
+				REEXPORTED_LIBRARY_NAMES = "crypto.3 ssl.3";
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;
 			};
@@ -1209,7 +1209,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sequel-ace.spmysql";
 				PRODUCT_NAME = SPMySQL;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				REEXPORTED_LIBRARY_NAMES = "crypto.1.1 ssl.1.1";
+				REEXPORTED_LIBRARY_NAMES = "crypto.3 ssl.3";
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;
 			};
@@ -1292,7 +1292,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sequel-ace.spmysql";
 				PRODUCT_NAME = SPMySQL;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				REEXPORTED_LIBRARY_NAMES = "crypto.1.1 ssl.1.1";
+				REEXPORTED_LIBRARY_NAMES = "crypto.3 ssl.3";
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;
 			};
